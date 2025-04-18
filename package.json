@@ -1,6 +1,6 @@
 {
   "name": "minervajs-mochuelo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Modulo para la gestión del Modelo de Datos, muy util para desarrollos basados en 'Base de Datos Primero'",
   "main": "src/app.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "DB",
     "Model",
     "Manager",
-    "minervaJS"
+    "MinervaJS"
   ],
   "author": "alexander.enrique.escobar@gmail.com",
   "license": "ISC",

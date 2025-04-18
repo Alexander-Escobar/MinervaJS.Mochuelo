@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const Model = require('./Model');
+const Model = require('./model');
 
 /**
  * @class ModelManager
