@@ -1,0 +1,26 @@
+{
+  "name": "minervajs-mochuelo",
+  "version": "1.0.1",
+  "description": "Modulo para la gestión del Modelo de Datos, muy util para desarrollos basados en 'Base de Datos Primero'",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Model",
+    "DB",
+    "Model",
+    "Manager",
+    "minervaJS"
+  ],
+  "author": "alexander.enrique.escobar@gmail.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alexander-Escobar/MinervaJS.Mochuelo.git"
+  },
+  "bug": {
+    "url": "https://github.com/Alexander-Escobar/MinervaJS.Mochuelo.git/issues"
+  },
+  "homepage": "https://github.com/Alexander-Escobar/MinervaJS.Mochuelo.git#readme"
+}
