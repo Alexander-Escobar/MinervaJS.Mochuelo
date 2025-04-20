@@ -17,7 +17,7 @@ class ModelManager {
    * @param {string} [filePath='models.json'] - Ruta del archivo JSON que contiene las definiciones de los modelos.
    */
   constructor(filePath = 'models.json') {
-    this.filePath = path.resolve(__dirname, filePath);
+    this.filePath = path.resolve(__dirname, '../../../' + filePath);		// Correccion por rutas relativas '../../../' 
     this.models = this.loadModels();
   }
 
