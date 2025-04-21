@@ -109,7 +109,18 @@ class ModelManager {
     }
   }
   
-  
+  /**
+   * @function updModel
+   * @description Modifica un modelo al archivo JSON y a la instancia de ModelManager.
+   * @param {object} modelDefinition - Definición del modelo a modificar.
+   * @returns {boolean} - Verdadero si el modelo se agregó correctamente, falso en caso contrario.
+   */
+  updModel(modelDefinition)
+  {
+	if (delModel(modelDefinition.name))
+	{ return addModel(modelDefinition); }
+	return false;
+  }
   
 }
 
