@@ -11,8 +11,8 @@ Permite Gestionar tu modelo de datos, con funciones como:
 * editModelAttribute - Edita un atributo de una columna específica dentro de la definición de un modelo.
 * deleteColumnAttribute - Elimina un atributo de una columna específica dentro de la definición de un modelo.
 * hasColumnAttribute - Verifica si una columna específica dentro de la definición de un modelo tiene un atributo determinado.
-* Crear Objetos o Clases basados en las entidades del Modelo, para manipulacion de tuplas (Registros) ***IMPLEMENTADO Ejemplo***
-**Todo lo anterior es guardado y gestionado en un archivo con formato .JSON**
+* Crear Objetos o Clases basados en las entidades del Modelo, para manipulacion de tuplas (Registros) ***IMPLEMENTADO Ejemplo***  
+**Todo lo anterior es guardado y gestionado en un archivo con formato .JSON**  
 
 Ejemplo: Partiendo de un proyecto en blanco recien creado  
 `$ npm i minervajs-mochuelo  `  
@@ -20,7 +20,7 @@ Ejemplo: Partiendo de un proyecto en blanco recien creado
 #### Archivo: ./models.js  
 ```json  
 {  
-  "tables": [  				// Listado de tablas del Modelo
+  "tables": [  			// Listado de tablas del Modelo
     {  
       "name": "pais",  		// Nombre de 1 modelo, dentro de la lista de Modelos
       "title": "Pais",  
