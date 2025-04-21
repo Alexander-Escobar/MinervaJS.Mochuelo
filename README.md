@@ -85,6 +85,9 @@ Ejemplo: Partiendo de un proyecto en blanco recien creado
 #### Archivo: ./index.js  
 Recupera la entidad 'pais' de nuestro modelo, crea una nueva tupla basado en nuestra entidad como un objeto.
 Posteriormente intenta repetir el proceso, pero omitiendo un atributo obligatorio.
+
+<details>
+	<summary>Archivo: ./index.js</summary>
 ```javascript
 // Ejemplo de uso del paquete minervajs-mochuelo
 const { ModelManager } = require('minervajs-mochuelo');
@@ -142,10 +145,12 @@ else
 }
 
 ```
-
+</details>
 
 #### Salida:
 Para lo anterior, lo siguiente seria una salida de ejecutar  `node index.js `  
+<details>
+	<summary>salida de consola</summary>
 ```
 
 Modelo "pais" encontrado: {
@@ -216,11 +221,12 @@ Nuevo objeto "pais" creado: {
 }
 La validación detectó datos inválidos para el modelo "pais".
 ```
-
+</details>
 
 #### Archivo: ./index.js  
 Si desea agregar modelos personalizados, para manipulacion, el siguiente fragmento de codigo, le permitira adicionar la entidad 'Ciudad' y posteriormente recuperarla  
-
+<details>
+	<summary>Archivo: ./index.js</summary>
 ```javascript  
 // Ejemplo de cómo agregar un nuevo modelo  
 const nuevoModeloDefinicion = {  
@@ -245,10 +251,12 @@ if (ciudadModel)
   console.log('Modelo "ciudad" encontrado:', ciudadModel.definition);  
 }  
 ```
-
+</details>
 
 #### Salida: 
 Para lo anterior, lo siguiente seria una salida de ejecutar  `node index.js `  
+<details>
+	<summary>salida de consola</summary>
 ``` 
 
 Se ha agregado el modelo "ciudad".  
@@ -264,6 +272,6 @@ Modelo "ciudad" encontrado: {
   ]  
 }  
 ```
-
+</details>
 
 
