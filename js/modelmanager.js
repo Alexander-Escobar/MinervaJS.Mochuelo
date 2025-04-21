@@ -93,6 +93,10 @@ class ModelManager {
 	{
       const data = fs.readFileSync(this.filePath, 'utf8');
       const jsonData = JSON.parse(data);
+	  console.log('jsonData');
+	  console.log(jsonData);
+	  console.log('jsonData.tables');
+	  console.log(jsonData.tables);
       delete jsonData.tables[name];
       fs.writeFileSync(this.filePath, JSON.stringify(jsonData, null, 2));
       delete this.models[name];

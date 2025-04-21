@@ -86,8 +86,6 @@ Ejemplo: Partiendo de un proyecto en blanco recien creado
 Recupera la entidad 'pais' de nuestro modelo, crea una nueva tupla basado en nuestra entidad como un objeto.
 Posteriormente intenta repetir el proceso, pero omitiendo un atributo obligatorio.
 
-<details>
-	<summary>Archivo: ./index.js</summary>
 ```javascript
 // Ejemplo de uso del paquete minervajs-mochuelo
 const { ModelManager } = require('minervajs-mochuelo');
@@ -118,13 +116,12 @@ if (paisModel)
   if (nuevoPaisObjeto) 
   {
     console.log('Nuevo objeto "pais" creado:', nuevoPaisObjeto);
-  } 
-  else 
-  {
+  } else {
     console.log('Los datos del nuevo país no son válidos según el modelo.');
   }
 
   // Intentar crear un objeto "pais" con datos inválidos (faltando un campo requerido)
+  console.log('creando un objeto "pais" con datos inválidos');
   const paisInvalidoData = {
     iso3: 'CAN',
     leyenda: 'La hoja de maple',
@@ -134,15 +131,10 @@ if (paisModel)
   const paisInvalidoObjeto = paisModel.createObject(paisInvalidoData);
 
   if (!paisInvalidoObjeto) 
-  {
-    console.log('La validación detectó datos inválidos para el modelo "pais".');
-  }
+  { console.log('La validación detectó datos inválidos para el modelo "pais".'); }
 
-} 
-else 
-{
-  console.log('El modelo "pais" no se encontró.');
-}
+} else 
+{ console.log('El modelo "pais" no se encontró.'); }
 
 ```
 
@@ -255,7 +247,6 @@ if (ciudadModel)
 Para lo anterior, lo siguiente seria una salida despues de ejecutar  `node index.js `  
 
 ``` 
-
 Se ha agregado el modelo "ciudad".  
 Modelo "ciudad" encontrado: {  
   name: 'ciudad',  
@@ -269,6 +260,4 @@ Modelo "ciudad" encontrado: {
   ]  
 }  
 ```
-
-
 

@@ -1,6 +1,6 @@
 {
   "name": "minervajs-mochuelo",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Modulo para la gestión del Modelo de Datos, muy util para desarrollos basados en 'Base de Datos Primero'",
   "main": "src/app.js",
   "scripts": {
