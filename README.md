@@ -145,12 +145,11 @@ else
 }
 
 ```
-</details>
+
 
 #### Salida:
-Para lo anterior, lo siguiente seria una salida de ejecutar  `node index.js `  
-<details>
-	<summary>salida de consola</summary>
+Para lo anterior, lo siguiente seria una salida despues de ejecutar  `node index.js `  
+
 ```
 
 Modelo "pais" encontrado: {
@@ -221,12 +220,11 @@ Nuevo objeto "pais" creado: {
 }
 La validación detectó datos inválidos para el modelo "pais".
 ```
-</details>
+
 
 #### Archivo: ./index.js  
 Si desea agregar modelos personalizados, para manipulacion, el siguiente fragmento de codigo, le permitira adicionar la entidad 'Ciudad' y posteriormente recuperarla  
-<details>
-	<summary>Archivo: ./index.js</summary>
+
 ```javascript  
 // Ejemplo de cómo agregar un nuevo modelo  
 const nuevoModeloDefinicion = {  
@@ -251,12 +249,11 @@ if (ciudadModel)
   console.log('Modelo "ciudad" encontrado:', ciudadModel.definition);  
 }  
 ```
-</details>
+
 
 #### Salida: 
-Para lo anterior, lo siguiente seria una salida de ejecutar  `node index.js `  
-<details>
-	<summary>salida de consola</summary>
+Para lo anterior, lo siguiente seria una salida despues de ejecutar  `node index.js `  
+
 ``` 
 
 Se ha agregado el modelo "ciudad".  
@@ -272,6 +269,6 @@ Modelo "ciudad" encontrado: {
   ]  
 }  
 ```
-</details>
+
 
 
