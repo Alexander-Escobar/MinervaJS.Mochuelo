@@ -2,41 +2,43 @@
 Modulo para la gestión del Modelo de Datos, muy util para desarrollos basados en "Base de Datos Primero".
 
 Permite Gestionar tu modelo de datos, con funciones como:
-* Listar las entidades (tablas) ***IMPLEMENTADO loadModels***
-* Obtener el detalle de entidades como sus atributos (columnas) y otras caracteristicas (pk, fk, columnas, longitud y precision) ***IMPLEMENTADO PARCIALMENTE***
-* Adicionar atributos (columnas) a una entidad *** NO IMPLEMENTADO ***
-* Modificar las entidades *** IMPLEMENTADO delModel / addModel / updModel***
-* Modificar atributos a una entidad
-* Adicionar metadatos o caracteristicas personalizados junto a los atributos o dentro de las entidades  ***IMPLEMENTADO addModel***
+* loadModels - Listar las Entidades (Tablas), Carga los modelos desde el archivo JSON, por defecto desde 'models.json'
+* getModel - Obtiene un modelo por su nombre, Obtener el detalle de entidades como sus atributos (columnas) y otras caracteristicas (pk, fk, columnas, longitud y precision)
+* addModel - Agrega un nuevo modelo al archivo JSON y a la instancia de ModelManager. Adiciona metadatos o caracteristicas personalizados junto a los atributos o dentro de las entidades.
+* updateModel - Actualiza un modelo existente en el archivo JSON y en la instancia de ModelManager.
+* deleteModel - Elimina un modelo del archivo JSON y de la instancia de ModelManager.
+* addColumnAttribute - Agrega un nuevo atributo a una columna específica dentro de la definición de un modelo.
+* editModelAttribute - Edita un atributo de una columna específica dentro de la definición de un modelo.
+* deleteColumnAttribute - Elimina un atributo de una columna específica dentro de la definición de un modelo.
+* hasColumnAttribute - Verifica si una columna específica dentro de la definición de un modelo tiene un atributo determinado.
 * Crear Objetos o Clases basados en las entidades del Modelo, para manipulacion de tuplas (Registros) ***IMPLEMENTADO Ejemplo***
-Todo lo anterior es guardado y gestionado en un archivo con formato .JSON
-
-* loadModels - Carga los modelos desde el archivo JSON, por defecto desde 'models.json'
-* getModel - Obtiene un modelo por su nombre
-* addModel - Agrega un nuevo modelo al archivo JSON y a la instancia de ModelManager.
-* delModel - Elimina un modelo al archivo JSON y a la instancia de ModelManager.
-* updModel - Realiza delModel y luego addModel en un solo paso al archivo JSON y a la instancia de ModelManager. *** NO IMPLEMENTADO ***
-
+**Todo lo anterior es guardado y gestionado en un archivo con formato .JSON**
 
 Ejemplo: Partiendo de un proyecto en blanco recien creado  
 `$ npm i minervajs-mochuelo  `  
 
 #### Archivo: ./models.js  
 ```json  
+{  
+  "tables": [  				// Listado de tablas del Modelo
     {  
-      "name": "pais",  
+      "name": "pais",  		// Nombre de 1 modelo, dentro de la lista de Modelos
       "title": "Pais",  
       "table": "pais",  
       "primary_key": [  
         "iso3"  
       ],  
-      "columns": [  
+      "sql_select": " SELECT * FROM pais ",  
+      "sql_edit": " SELECT * FROM pais WHERE iso3 = ? ",  
+      "sql_new": " SELECT * FROM pais ",  
+      "sql_delete": " DELETE FROM pais WHERE iso3 = ? ",  
+      "columns": [  		// Listado de Columnas del Modelo
         {  
           "col": "iso3",  
-          "type": "string",  
-		  "required": true,  
+          "type": "string",	// Un atributo dentro de la Columna del Modelo
           "length": 3,  
           "minLength": 3,  
+          "required": true,  
           "visible": true,  
           "searchable": true,  
           "label": "Nombre Corto (ISO 3)",  
@@ -47,9 +49,9 @@ Ejemplo: Partiendo de un proyecto en blanco recien creado
         {  
           "col": "nombre",  
           "type": "string",  
-		  "required": true,  
           "length": 80,  
           "minLength": 2,  
+          "required": true,  
           "visible": true,  
           "searchable": true,  
           "label": "Nombre",  
@@ -58,9 +60,9 @@ Ejemplo: Partiendo de un proyecto en blanco recien creado
         {  
           "col": "leyenda",  
           "type": "string",  
-		  "required": false,  
           "length": 80,  
           "minLength": 0,  
+          "required": false,  
           "visible": true,  
           "searchable": false,  
           "label": "Leyenda",  
@@ -69,9 +71,9 @@ Ejemplo: Partiendo de un proyecto en blanco recien creado
         {  
           "col": "iso2",  
           "type": "string",  
-		  "required": false,  
           "length": 2,  
           "minLength": 2,  
+          "required": false,  
           "visible": true,  
           "searchable": true,  
           "label": "Nombre Corto (ISO 2)",  
@@ -81,6 +83,8 @@ Ejemplo: Partiendo de un proyecto en blanco recien creado
         }  
       ]  
     }  
+  ]  
+}   
 ```
 
 #### Archivo: ./index.js  
