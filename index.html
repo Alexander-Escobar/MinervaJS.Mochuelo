@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinervaJS.Mochuelo - Gestión de Modelo de Datos para Node.js</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        code {
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .installation {
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MinervaJS.Mochuelo</h1>
+        <p>
+            <strong>MinervaJS.Mochuelo</strong> es un módulo para Node.js diseñado para la gestión del Modelo de Datos, especialmente útil para desarrollos basados en la filosofía "Base de Datos Primero".
+        </p>
+
+        <h2>Funcionalidades Principales</h2>
+        <p>Este módulo te permite gestionar tu modelo de datos a través de diversas funciones:</p>
+        <ul>
+            <li>
+                <code>loadModels</code> - Lista las Entidades (Tablas) y carga los modelos desde el archivo JSON. Por defecto, busca el archivo <code>models.json</code>.
+            </li>
+            <li>
+                <code>getModel</code> - Obtiene un modelo específico por su nombre, proporcionando detalles como sus atributos (columnas) y otras características (clave primaria, clave foránea, columnas, longitud y precisión).
+            </li>
+            <li>
+                <code>addModel</code> - Agrega un nuevo modelo tanto al archivo JSON persistente como a la instancia de <code>ModelManager</code> en memoria. Permite adicionar metadatos o características personalizadas dentro de las entidades o junto a sus atributos.
+            </li>
+            <li>
+                <code>updateModel</code> - Actualiza un modelo existente, tanto en el archivo JSON como en la instancia de <code>ModelManager</code>.
+            </li>
+            <li>
+                <code>deleteModel</code> - Elimina un modelo especificado del archivo JSON y de la instancia de <code>ModelManager</code>.
+            </li>
+            <li>
+                <code>addColumnAttribute</code> - Agrega un nuevo atributo a una columna específica dentro de la definición de un modelo.
+            </li>
+            <li>
+                <code>editModelAttribute</code> - Edita un atributo existente de una columna específica dentro de la definición de un modelo.
+            </li>
+            <li>
+                <code>deleteColumnAttribute</code> - Elimina un atributo de una columna específica dentro de la definición de un modelo.
+            </li>
+            <li>
+                <code>hasColumnAttribute</code> - Verifica si una columna específica dentro de la definición de un modelo posee un atributo determinado.
+            </li>
+            <li>
+                <strong>Crear Objetos o Clases basados en las entidades del Modelo</strong> - <span style="color: green;">IMPLEMENTADO</span>. Permite la manipulación de tuplas (Registros) basada en la estructura del modelo.
+                <br>
+                Ejemplo de uso disponible (ver documentación del módulo).
+            </li>
+        </ul>
+        <p>
+            Toda la información y la estructura del modelo de datos se guardan y gestionan en un archivo con formato <code>.JSON</code>.
+        </p>
+
+        <div class="installation">
+            <h2>Instalación</h2>
+            <p>Para comenzar a utilizar MinervaJS.Mochuelo en tu proyecto de Node.js, puedes instalarlo fácilmente usando npm:</p>
+            <code>$ npm i minervajs-mochuelo</code>
+        </div>
+    </div>
+</body>
+</html>
