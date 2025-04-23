@@ -4,16 +4,22 @@ Modulo para la gestión del Modelo de Datos, muy util para desarrollos basados e
 Permite Gestionar tu modelo de datos, con funciones como:
 * loadModels - Listar las Entidades (Tablas), Carga los modelos desde el archivo JSON, por defecto desde 'models.json'
 * getModel - Obtiene un modelo por su nombre, Obtener el detalle de entidades como sus atributos (columnas) y otras caracteristicas (pk, fk, columnas, longitud y precision)
+* getModelList - Devuelve un array con la lista de nombres de todos los modelos cargados.
 * addModel - Agrega un nuevo modelo al archivo JSON y a la instancia de ModelManager. Adiciona metadatos o caracteristicas personalizados junto a los atributos o dentro de las entidades.
 * updateModel - Actualiza un modelo existente en el archivo JSON y en la instancia de ModelManager.
 * deleteModel - Elimina un modelo del archivo JSON y de la instancia de ModelManager.
+* addModelAttribute - Agrega un nuevo atributo a la definición de un modelo.
+* updateModelAttribute - Actualiza el valor de un atributo existente en la definición de un modelo.
+* deleteModelAttribute - Elimina un atributo de la definición de un modelo.
+* hasModelAttribute - Verifica si un atributo existe en la definición de un modelo (fuera de la sección de columnas).
 * addColumnAttribute - Agrega un nuevo atributo a una columna específica dentro de la definición de un modelo.
 * editModelAttribute - Edita un atributo de una columna específica dentro de la definición de un modelo.
 * deleteColumnAttribute - Elimina un atributo de una columna específica dentro de la definición de un modelo.
 * hasColumnAttribute - Verifica si una columna específica dentro de la definición de un modelo tiene un atributo determinado.
-* Crear Objetos o Clases basados en las entidades del Modelo, para manipulacion de tuplas (Registros) ***IMPLEMENTADO Ejemplo***  
+* Crear Objetos o Clases basados en las entidades del Modelo, para manipulacion de tuplas (Registros) ***IMPLEMENTADO ver Ejemplo***    
+  
 **Todo lo anterior es guardado y gestionado en un archivo con formato .JSON**  
-
+  
 Ejemplo: Partiendo de un proyecto en blanco recien creado  
 `$ npm i minervajs-mochuelo  `  
 
@@ -264,3 +270,40 @@ Modelo "ciudad" encontrado: {
 }  
 ```
 
+
+
+Ejemplo, cómo utilizar los métodos para agregar, eliminar y verificar la existencia de atributos de las columnas de un modelo.  
+  
+#### Archivo: ./index.js  
+Edite el archivo index.js  
+```javascript  
+// Agregar el atributo 'searchable: false' a la columna 'nombre' del modelo 'ciudad'  
+const addAttrResult = modelManager.addColumnAttribute('ciudad', 'nombre', 'searchable', false);  
+if (addAttrResult) 
+{  
+  console.log("Se agregó el atributo 'searchable' a la columna 'nombre' del modelo 'ciudad'.");  
+  const ciudadModel = modelManager.getModel('ciudad');  
+  console.log("Definición actualizada del modelo 'ciudad':", ciudadModel.definition);  
+}  
+else  
+{ console.log("No se pudo agregar el atributo a la columna 'nombre' del modelo 'ciudad'."); }  
+  
+// Verificar si la columna 'nombre' del modelo 'ciudad' tiene el atributo 'searchable'  
+const hasAttrResult = modelManager.hasColumnAttribute('ciudad', 'nombre', 'searchable');  
+console.log("¿La columna 'nombre' del modelo 'ciudad' tiene el atributo 'searchable'?", hasAttrResult);  
+  
+// Eliminar el atributo 'searchable' de la columna 'nombre' del modelo 'ciudad'  
+const deleteAttrResult = modelManager.deleteColumnAttribute('ciudad', 'nombre', 'searchable');  
+if (deleteAttrResult)  
+{  
+  console.log("Se eliminó el atributo 'searchable' de la columna 'nombre' del modelo 'ciudad'.");  
+  const ciudadModel = modelManager.getModel('ciudad');  
+  console.log("Definición actualizada del modelo 'ciudad':", ciudadModel.definition);  
+} else  
+{ console.log("No se pudo eliminar el atributo 'searchable' de la columna 'nombre' del modelo 'ciudad'."); }  
+  
+// Verificar nuevamente si la columna 'nombre' del modelo 'ciudad' tiene el atributo 'searchable'  
+const hasAttrResultAgain = modelManager.hasColumnAttribute('ciudad', 'nombre', 'searchable');  
+console.log("¿La columna 'nombre' del modelo 'ciudad' tiene el atributo 'searchable' ahora?", hasAttrResultAgain);  
+```  
+  

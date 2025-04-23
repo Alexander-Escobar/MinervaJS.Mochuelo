@@ -1,5 +1,5 @@
 /**
- * @module mi-modelo-de-datos
+ * @module MinervaJS-Mochuelo
  * @description Módulo principal que exporta las clases y utilidades para la gestión de modelos.
  */
 

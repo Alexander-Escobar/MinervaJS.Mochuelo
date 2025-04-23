@@ -11,7 +11,8 @@ const Model = require('./model');
  * @class ModelManager
  * @description Clase que gestiona los modelos.
  */
-class ModelManager {
+class ModelManager 
+{
   /**
    * @constructor
    * @param {string} [filePath='models.json'] - Ruta del archivo JSON que contiene las definiciones de los modelos.
@@ -29,7 +30,8 @@ class ModelManager {
    */
   loadModels() 
   {
-    try {
+    try 
+	{
       const data = fs.readFileSync(this.filePath, 'utf8');
       const jsonData = JSON.parse(data);
       const models = {};
@@ -54,6 +56,17 @@ class ModelManager {
   getModel(name) 
   {
     return this.models[name];
+  }
+  
+  
+ /**
+   * @function getModelList
+   * @description Devuelve un array con la lista de nombres de todos los modelos cargados.
+   * @returns {string[]} - Un array de nombres de modelos.
+   */
+  getModelList() 
+  {
+    return Object.keys(this.models);
   }
 
   /**
@@ -147,7 +160,151 @@ class ModelManager {
     }
   }
   
+/**
+   * @function addModelAttribute
+   * @description Agrega un nuevo atributo a la definición de un modelo (fuera de la sección de columnas).
+   * @param {string} modelName - Nombre del modelo al que se agregará el atributo.
+   * @param {string} attributeName - Nombre del nuevo atributo (la clave).
+   * @param {*} attributeValue - El valor del nuevo atributo.
+   * @returns {boolean} - Verdadero si el atributo se agregó correctamente, falso si no se encontró el modelo o el atributo ya existe.
+   */
+  addModelAttribute(modelName, attributeName, attributeValue) 
+  {
+    try 
+	{
+      const data = fs.readFileSync(this.filePath, 'utf8');
+      const jsonData = JSON.parse(data);
+      const modelIndex = jsonData.tables.findIndex(table => table.name === modelName);
+
+      if (modelIndex !== -1) 
+	  {
+        if (!jsonData.tables[modelIndex].hasOwnProperty(attributeName)) 
+		{
+          jsonData.tables[modelIndex][attributeName] = attributeValue;
+          this.saveModels(jsonData);
+          this.models[modelName] = new Model(jsonData.tables[modelIndex]);
+          return true;
+        } 
+		else 
+		{
+          console.warn(`Attribute "${attributeName}" already exists in model "${modelName}".`);
+          return false;
+        }
+      } 
+	  else 
+	  {
+        console.warn(`Model with name "${modelName}" not found for adding attribute.`);
+        return false;
+      }
+    } 
+	catch (error) 
+	{
+      console.error(`Error adding attribute "${attributeName}" to model "${modelName}":`, error);
+      return false;
+    }
+  }
+
+  /**
+   * @function deleteModelAttribute
+   * @description Elimina un atributo de la definición de un modelo (fuera de la sección de columnas).
+   * @param {string} modelName - Nombre del modelo del que se eliminará el atributo.
+   * @param {string} attributeName - Nombre del atributo a eliminar (la clave).
+   * @returns {boolean} - Verdadero si el atributo se eliminó correctamente, falso si no se encontró el modelo o el atributo no existe.
+   */
+  deleteModelAttribute(modelName, attributeName) 
+  {
+    try 
+	{
+      const data = fs.readFileSync(this.filePath, 'utf8');
+      const jsonData = JSON.parse(data);
+      const modelIndex = jsonData.tables.findIndex(table => table.name === modelName);
+
+      if (modelIndex !== -1 && jsonData.tables[modelIndex].hasOwnProperty(attributeName)) 
+	  {
+        delete jsonData.tables[modelIndex][attributeName];
+        this.saveModels(jsonData);
+        this.models[modelName] = new Model(jsonData.tables[modelIndex]);
+        return true;
+      } 
+	  else 
+	  {
+        console.warn(`Attribute "${attributeName}" not found in model "${modelName}".`);
+        return false;
+      }
+    } 
+	catch (error) 
+	{
+      console.error(`Error deleting attribute "${attributeName}" from model "${modelName}":`, error);
+      return false;
+    }
+  }
+
+  /**
+   * @function updateModelAttribute
+   * @description Actualiza el valor de un atributo existente en la definición de un modelo (fuera de la sección de columnas).
+   * @param {string} modelName - Nombre del modelo cuyo atributo se actualizará.
+   * @param {string} attributeName - Nombre del atributo a actualizar (la clave).
+   * @param {*} attributeValue - El nuevo valor del atributo.
+   * @returns {boolean} - Verdadero si el atributo se actualizó correctamente, falso si no se encontró el modelo o el atributo no existe.
+   */
+  updateModelAttribute(modelName, attributeName, attributeValue) 
+  {
+    try 
+	{
+      const data = fs.readFileSync(this.filePath, 'utf8');
+      const jsonData = JSON.parse(data);
+      const modelIndex = jsonData.tables.findIndex(table => table.name === modelName);
+
+      if (modelIndex !== -1 && jsonData.tables[modelIndex].hasOwnProperty(attributeName)) 
+	  {
+        jsonData.tables[modelIndex][attributeName] = attributeValue;
+        this.saveModels(jsonData);
+        this.models[modelName] = new Model(jsonData.tables[modelIndex]);
+        return true;
+      } 
+	  else 
+	  {
+        console.warn(`Attribute "${attributeName}" not found in model "${modelName}" for update.`);
+        return false;
+      }
+    } 
+	catch (error) 
+	{
+      console.error(`Error updating attribute "${attributeName}" in model "${modelName}":`, error);
+      return false;
+    }
+  }
   
+  /**
+   * @function hasModelAttribute
+   * @description Verifica si un atributo existe en la definición de un modelo (fuera de la sección de columnas).
+   * @param {string} modelName - Nombre del modelo a verificar.
+   * @param {string} attributeName - Nombre del atributo a buscar (la clave).
+   * @returns {boolean} - Verdadero si el atributo existe en el modelo, falso si no se encontró el modelo o el atributo no existe.
+   */
+  hasModelAttribute(modelName, attributeName) 
+  {
+    try 
+	{
+      const data = fs.readFileSync(this.filePath, 'utf8');
+      const jsonData = JSON.parse(data);
+      const modelIndex = jsonData.tables.findIndex(table => table.name === modelName);
+
+      if (modelIndex !== -1) 
+	  { return jsonData.tables[modelIndex].hasOwnProperty(attributeName); }
+	  else 
+	  {
+        console.warn(`Model with name "${modelName}" not found for checking attribute.`);
+        return false;
+      }
+    } 
+	catch (error) 
+	{
+      console.error(`Error checking existence of attribute "${attributeName}" in model "${modelName}":`, error);
+      return false;
+    }
+  }
+
   /**
    * @function addColumnAttribute
    * @description Agrega un nuevo atributo a una columna específica dentro de la definición de un modelo.
@@ -211,28 +368,38 @@ class ModelManager {
    * @param {*} attributeValue - El nuevo valor del atributo.
    * @returns {boolean} - Verdadero si el atributo se editó correctamente, falso si no se encontró el modelo o la columna.
    */
-  editModelAttribute(modelName, columnName, attributeName, attributeValue) {
-    try {
+  editModelAttribute(modelName, columnName, attributeName, attributeValue) 
+  {
+    try 
+	{
       const data = fs.readFileSync(this.filePath, 'utf8');
       const jsonData = JSON.parse(data);
       const modelIndex = jsonData.tables.findIndex(table => table.name === modelName);
 
-      if (modelIndex !== -1) {
+      if (modelIndex !== -1) 
+	  {
         const column = jsonData.tables[modelIndex].columns.find(col => col.col === columnName);
-        if (column) {
+        if (column) 
+		{
           column[attributeName] = attributeValue;
           this.saveModels(jsonData);
           this.models[modelName] = new Model(jsonData.tables[modelIndex]); // Reinstanciar el modelo con la nueva definición
           return true;
-        } else {
+        } 
+		else 
+		{
           console.warn(`Column with name "${columnName}" not found in model "${modelName}".`);
           return false;
         }
-      } else {
+      } 
+	  else 
+	  {
         console.warn(`Model with name "${modelName}" not found for attribute editing.`);
         return false;
       }
-    } catch (error) {
+    } 
+	catch (error) 
+	{
       console.error(`Error editing attribute "${attributeName}" of column "${columnName}" in model "${modelName}":`, error);
       return false;
     }
